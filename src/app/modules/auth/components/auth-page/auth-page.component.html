@@ -1,0 +1,23 @@
+<div class="auth-page-main-container">
+
+    
+    <form  class="user-login-conatiner" 
+        [formGroup]="authFormGroup"
+        (change)="authFormChange()"
+        (ngSubmit)="loginFunc()"
+         >
+        <mat-form-field>
+            <mat-label>Login</mat-label>
+            <input matInput formControlName="login">
+            <mat-error *ngIf="authFormGroup.hasError('required','login')">Login is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput formControlName="password">
+            <mat-error *ngIf="authFormGroup.hasError('required','password')">Password is required</mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" [disabled]="authFormGroup.invalid">Login</button>
+    </form>
+</div>
