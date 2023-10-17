@@ -1,0 +1,4 @@
+<div class="auth-page-main-container">
+    <app-login-form (signIn)="signInBtnClick($event)" *ngIf="displaySingInForm"></app-login-form>
+    <app-register-form (signUp)="signUpBtnClick($event)" *ngIf="!displaySingInForm"></app-register-form>
+</div>

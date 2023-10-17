@@ -1,19 +1,39 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthPageComponent } from './modules/auth/components/auth-page/auth-page.component';
-import { loginGuardGuard } from './core/guards/login-guard.guard';
+import { AuthPageComponent } from './modules/auth/pages/auth-page/auth-page.component';
+import { loginGuard } from './core/guards/login-guard/login-guard.guard';
+import { registerGuard } from './core/guards/register-guard/register.guard';
+import { HomePageComponent } from './modules/home/pages/home-page/home-page.component';
+import { homeGuardGuard } from './core/guards/home-guard/home-guard.guard';
 
 const routes: Routes = [
   {
-    path: "",
-    redirectTo: "login",
-    pathMatch:"full"
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
   },
   {
-    path: "login",
-    component: AuthPageComponent,
-    canActivate: [loginGuardGuard]
-  }
+    path: 'authorization',
+    children: [
+      {
+        path: 'sign-in',
+        component: AuthPageComponent,
+        data:{form:"signIn"},
+        canActivate: [loginGuard]
+      },
+      {
+        path: 'sign-up',
+        component: AuthPageComponent,
+        data:{form:"signUp"},
+        canActivate: [registerGuard]
+      }
+    ]
+  },
+  {
+    path: 'home',
+    component: HomePageComponent,
+    canActivate: [homeGuardGuard]
+  },
 ];
 
 @NgModule({

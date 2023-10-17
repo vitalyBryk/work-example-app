@@ -1,0 +1,25 @@
+    
+<form  class="user-login-conatiner" 
+[formGroup]="signUpFormGroup"
+(change)="signUpFormChange()"
+(ngSubmit)="onSubmit()"
+ >
+<mat-form-field>
+    <mat-label>Login</mat-label>
+    <input matInput formControlName="login">
+    <mat-error *ngIf="signUpFormGroup.hasError('required','login')">Login is required</mat-error>
+</mat-form-field>
+
+<mat-form-field>
+    <mat-label>Password</mat-label>
+    <input matInput formControlName="password">
+    <mat-error *ngIf="signUpFormGroup.hasError('required','password')">Password is required</mat-error>
+</mat-form-field>
+
+<button mat-raised-button color="primary" [disabled]="signUpFormGroup.invalid">Register</button>
+<div>
+    Already have an account? 
+    <a href="authorization/sign-in">sign in</a> 
+</div>
+
+</form>
