@@ -1,11 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit} from '@angular/core';
+import { ActivatedRoute,Router } from '@angular/router';
+import { AuthService } from 'src/app/core/services/auth-service.service';
 
 @Component({
   selector: 'app-auth-page',
   templateUrl: './auth-page.component.html',
-  styleUrls: ['./auth-page.component.scss']
+  styleUrls: ['./auth-page.component.scss'],
+  providers: [AuthService]
 })
 
 export class AuthPageComponent  implements OnInit{
@@ -14,7 +15,9 @@ export class AuthPageComponent  implements OnInit{
   public displaySingInForm: boolean = true;
 
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router : Router,
+    private authService: AuthService
   ){}
 
   ngOnInit(): void {
@@ -25,9 +28,10 @@ export class AuthPageComponent  implements OnInit{
 
 
   public signInBtnClick(event: any){
-    console.log(event);
-    
+    this.authService.saveInputUsersDates(event);
+    this.router.navigate(['home'])
   }
+
 
   public signUpBtnClick(event: any){
     console.log(event, "reg");
