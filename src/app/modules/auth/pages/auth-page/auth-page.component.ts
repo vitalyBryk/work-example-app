@@ -29,7 +29,7 @@ export class AuthPageComponent  implements OnInit{
 
   public signInBtnClick(event: any){
     this.authService.saveInputUsersDates(event);
-    this.router.navigate(['home'])
+    this.router.navigate(['home']);
   }
 
 
